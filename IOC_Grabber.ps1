@@ -1,10 +1,11 @@
+# Recupere les precess en cours d'execution et les enregistre dans un fichier csv 
 Get-Process | Select-Object Name, Path, CommandLine | Export-Csv -Path "C:\Users\$env:UserName\Desktop\ioc.csv"
-Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort | Export-Csv -Path "C:\Users\$env:UserName\Desktop\ioc.csv" -Append
-
+# recupere les connexions reseau et les enregistre dans un fichier csv
+Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort | Export-Csv -Path "C:\Users\$env:UserName\Desktop\netTCPco.csv" -Append
 # Collecte des informations IOC
 
 # Recherche des fichiers malveillants connus
-Get-ChildItem -Path C:\ -Recurse -Include *.exe,*.dll,*.sys | Get-FileHash | Where-Object { $_.Hash -in @('MD5', 'SHA1', 'SHA256') } | Out-File "C:\Users\$env:UserName\Desktop\known_malware.txt"
+Get-ChildItem -Path C:\ -Recurse -Include *.exe,*.dll,*.sys | Get-FileHash | Where-Object { $_.Algorithm -in @('MD5', 'SHA1', 'SHA256') } | Out-File "C:\Users\$env:UserName\Desktop\known_malware.txt"
 
 # connexions réseau 
 Get-NetTCPConnection | Where-Object { $_.State -eq 'Established' -and $_.RemoteAddress -notlike '192.168.*' } | Out-File 'C:\Users\$env:UserName\Desktop\network_connections.txt'
@@ -63,3 +64,8 @@ Get-WinEvent -FilterHashtable @{Logname='Security'; id=4663,4656,6416} | Out-Fil
 Get-Content -Path "$Env:WinDir\inf\setupapi.dev.log" | Out-File "C:\Users\$env:UserName\Desktop\Connection_timestamps.txt"
 # Connextion times
 Get-WinEvent -Path "$Env:WinDir\System32\winevt\logs\Microsoft-Windows-Partition*" | Out-File "C:\Users\$env:UserName\Desktop\Connection_timestamps.txt"
+
+
+# Browser history ## Firefox / Chrome / Edge
+# History and dowload necessity to use sqlite3 portable
+#Get-ChildItem -Path 
