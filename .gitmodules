@@ -1,0 +1,3 @@
+[submodule "munin"]
+	path = munin
+	url = https://github.com/Oni-kuki/munin
