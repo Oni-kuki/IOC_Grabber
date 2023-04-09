@@ -5,4 +5,5 @@ if [ -z "$1" ]; then
   exit 1
 fi
 # Parse IOC.txt for Hashes
-awk ' {print $2 }' "$1" > Hashes.txt | sed '1,3d' Hashes.txt -i
+  awk ' {print $2 }' "$1" > Hashes.txt && sed '1,3d' Hashes.txt -i
+ 
