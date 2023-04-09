@@ -1,3 +1,6 @@
 [submodule "munin"]
 	path = munin
 	url = https://github.com/Oni-kuki/munin
+[submodule "Hash-Parser"]
+	path = Hash-Parser
+	url = https://github.com/Oni-kuki/Hash-Parser
