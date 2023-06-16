@@ -52,9 +52,6 @@ function Capturing {
     Hash_Artifacts
 }
 
-# Call the function 
-Capturing
-
 function capture_process{ 
 # capture the running processes and save them in a csv file
 Write-Host "Capture the running processes and save them in a csv file..." 
@@ -227,3 +224,5 @@ Get-ChildItem -Path "C:\Users\$env:UserName\Desktop\IOC-Grabber" -Recurse -Inclu
 Write-Host "Hashing Done !" -ForegroundColor Green
 Write-Host "All Done!, you can find the artefacts on your desktop, here: C:\Users\$env:UserName\Desktop\IOC-Grabber, Good Luck!"
 }
+# Call the function 
+Capturing
